@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(this, getResources().getString(R.string.string_perm_location3), Toast.LENGTH_SHORT).show();
+            ifTruePermission();
         }
     }
 
