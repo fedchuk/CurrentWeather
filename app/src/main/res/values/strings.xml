@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CurrentWeather</string>
+
+    <!-- main -->
+    <string name="main_btn_current">Current Weather</string>
+    <string name="main_btn_search">Search Weather</string>
+
+    <!-- current -->
+    <string name="app_url_response">http://api.wunderground.com/</string>
+    <string name="failed_coordinites">Can not get coordinates!</string>
+
+    <!-- search -->
+    <string name="app_url_response_auto">http://autocomplete.wunderground.com/</string>
+    <string name="failed_search">The request is too short. Minimum 3 characters!</string>
+
+    <!-- permission -->
+    <string name="string_perm_grant">Access is allowed!</string>
+    <string name="string_perm_notgrant">Access is denied!</string>
+    <string name="string_perm_location1">You need permission to access the location</string>
+    <string name="string_perm_location2">There is a need to obtain coordinates</string>
+    <string name="string_perm_location3">Permission (already received)!</string>
+    <string name="string_perm_failed">You have denied access!</string>
+
+
+</resources>

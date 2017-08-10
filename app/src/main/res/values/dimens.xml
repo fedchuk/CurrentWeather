@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- current -->
+    <dimen name="image_margin_top">16dp</dimen>
+    <dimen name="text_city_size">24sp</dimen>
+    <dimen name="text_temperature_size">30sp</dimen>
+
+    <!-- current_item -->
+    <dimen name="item_card_radius">4dp</dimen>
+    <dimen name="item_text_size">16sp</dimen>
+    <dimen name="item_padding">16sp</dimen>
+
+    <!-- city_item -->
+    <dimen name="item_city_text_margin">16dp</dimen>
+
+    <!-- search -->
+    <dimen name="edit_margin_top">8dp</dimen>
+</resources>
