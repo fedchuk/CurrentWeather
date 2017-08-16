@@ -72,18 +72,6 @@ public class CurrentWeatherActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(itemAnimator);
         recyclerView.setAdapter(weatherAdapter);
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(1000, TimeUnit.SECONDS)
-                .readTimeout(1000, TimeUnit.SECONDS).build();
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getResources().getString(R.string.app_url_response))
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(client)
-                .build();
-
         LocationManager mLocationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location location = getLastKnownLocation();
@@ -94,7 +82,7 @@ public class CurrentWeatherActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.failed_coordinites), Toast.LENGTH_SHORT).show();
         }
 
-        WeatherModel weatherModel = new WeatherModel(retrofit, strCoordinates);
+        WeatherModel weatherModel = new WeatherModel(getRequests(getResources().getString(R.string.app_url_response)), strCoordinates);
         presenter = new CurrentWeatherPresenter(weatherModel);
         presenter.attachView(this);
         presenter.viewIsReady();
@@ -134,6 +122,22 @@ public class CurrentWeatherActivity extends AppCompatActivity {
             textCity.setText(weather.getCity());
             textTemperature.setText(weather.getTemp()+" °C");
         }
+    }
+
+    private Retrofit getRequests(String baseUrl) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(1000, TimeUnit.SECONDS)
+                .readTimeout(1000, TimeUnit.SECONDS).build();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build();
+
+        return retrofit;
     }
 
     @Override

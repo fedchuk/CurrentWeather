@@ -95,19 +95,7 @@ public class SearchWeatherActivity extends AppCompatActivity implements CityAdap
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length()>2) {
-                    OkHttpClient client = new OkHttpClient.Builder()
-                            .connectTimeout(1000, TimeUnit.SECONDS)
-                            .readTimeout(1000, TimeUnit.SECONDS).build();
-                    Gson gson = new GsonBuilder()
-                            .setLenient()
-                            .create();
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(getResources().getString(R.string.app_url_response_auto))
-                            .addConverterFactory(GsonConverterFactory.create(gson))
-                            .client(client)
-                            .build();
-
-                    WeatherModel weatherModel = new WeatherModel(retrofit, "");
+                    WeatherModel weatherModel = new WeatherModel(getRequests(getResources().getString(R.string.app_url_response_auto)), "");
                     presenter = new SearchCityPresenter(weatherModel);
                     presenter.attachView(SearchWeatherActivity.this);
 
@@ -168,19 +156,7 @@ public class SearchWeatherActivity extends AppCompatActivity implements CityAdap
         hideCity();
         textCity.setText(city);
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(1000, TimeUnit.SECONDS)
-                .readTimeout(1000, TimeUnit.SECONDS).build();
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getResources().getString(R.string.app_url_response))
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(client)
-                .build();
-
-        WeatherModel weatherModel = new WeatherModel(retrofit, "");
+        WeatherModel weatherModel = new WeatherModel(getRequests(getResources().getString(R.string.app_url_response)), "");
         presenter = new SearchCityPresenter(weatherModel);
         presenter.attachView(this);
 
@@ -199,6 +175,22 @@ public class SearchWeatherActivity extends AppCompatActivity implements CityAdap
         imageWeather.setVisibility(View.VISIBLE);
         textCity.setVisibility(View.VISIBLE);
         textTemperature.setVisibility(View.VISIBLE);
+    }
+
+    private Retrofit getRequests(String baseUrl) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(1000, TimeUnit.SECONDS)
+                .readTimeout(1000, TimeUnit.SECONDS).build();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build();
+
+        return retrofit;
     }
 
     private void hideCity() {

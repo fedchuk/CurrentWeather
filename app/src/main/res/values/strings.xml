@@ -12,6 +12,7 @@
     <!-- search -->
     <string name="app_url_response_auto">http://autocomplete.wunderground.com/</string>
     <string name="failed_search">The request is too short. Minimum 3 characters!</string>
+    <string name="hint_search">City name in English...</string>
 
     <!-- permission -->
     <string name="string_perm_grant">Access is allowed!</string>

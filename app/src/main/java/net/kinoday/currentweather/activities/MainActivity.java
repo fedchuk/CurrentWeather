@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, REQUEST_PERMISSION_LOCATION);
             }
         } else {
-            Toast.makeText(this, getResources().getString(R.string.string_perm_location3), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getResources().getString(R.string.string_perm_location3), Toast.LENGTH_SHORT).show();
             ifTruePermission();
         }
     }
